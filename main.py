@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 
 from flask import Flask, request, abort
 
@@ -20,11 +21,16 @@ from linebot.v3.webhooks import (
     TextMessageContent
 )
 
+load_dotenv()
+
 app = Flask(__name__)
 
 configuration = Configuration(access_token=os.getenv('LINE_CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET'))
 
+@app.route("/")
+def hello():
+    return "Success"
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -56,15 +62,7 @@ def handle_message(event):
             )
         )
 
-def forward():
-  import ngrok
-
-  listener = ngrok.forward(8888, authtoken_from_env=True)
-  print(f"Ingress established at {listener.url()}")
 
 
 if __name__ == "__main__":
-    if os.getenv('ENV') == 'dev':
-        forward()
-
-    app.run(port=8888)
+    app.run(port=8000)

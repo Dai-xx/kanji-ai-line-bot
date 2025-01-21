@@ -1,3 +1,7 @@
 Flask
 line-bot-sdk>=3.0.0
 ngrok
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+python-dotenv

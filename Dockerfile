@@ -12,4 +12,4 @@ COPY ./ ./
 
 RUN pip install --requirement requirements.txt
 
-EXPOSE 8888
+EXPOSE 8000
