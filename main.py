@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+import threading
 
 from flask import Flask, request, abort
 
@@ -30,7 +31,7 @@ handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET'))
 
 @app.route("/")
 def hello():
-    return "Success"
+    return "Successaa"
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -65,4 +66,9 @@ def handle_message(event):
 
 
 if __name__ == "__main__":
-    app.run(port=8000)
+    app.run(debug=True, port=5000)
+# def run():
+#     app.run(debug=True, port=5000, threaded=False)
+
+# thread = threading.Thread(target=run)
+# thread.start()
